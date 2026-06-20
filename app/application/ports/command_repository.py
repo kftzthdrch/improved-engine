@@ -1,0 +1,9 @@
+from typing import Protocol
+from app.domain.models.command import Command
+from app.domain.value_objects.command_id import CommandId
+from app.domain.value_objects.vehicle_id import VehicleId
+
+class CommandRepository(Protocol):
+    def save(self, command: Command) -> None: ...
+    def get(self, command_id: CommandId) -> Command | None: ...
+    def list_for_vehicle(self, vehicle_id: VehicleId) -> list[Command]: ...
